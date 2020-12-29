@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Wraper = styled.div`
   width: 100%;
-  height: 60px;
+  height: 65px;
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -11,25 +11,26 @@ const Wraper = styled.div`
 
 const Input = styled.input`
   height: 100%;
-  width: 100%;
-  margin-right: .25rem;
+  width: 275px;
+  margin-right: .35rem;
   font-size: 1.5rem;
   color: #34495e;
   outline: none;
   border: 1px solid #2c3e50;
-  border-radius: 4px;
-  padding: .25rem;
+  border-radius: 7px;
+  padding: .35rem;
 `
 
 const Select = styled.select`
   height: 100%;
-  width: 25%;
+  width: 85px;
   border: 1px solid #2c3e50;
   font-size: 1.5rem;
   color: #34495e;
-  border-radius: 4px;
+  border-radius: 7px;
   outline: none;
   background-color: #fff;
+  border-bottom: 1px solid #34495e;
 `
 
 function CurrencyRow(props) {

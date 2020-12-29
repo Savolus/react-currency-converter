@@ -3,22 +3,40 @@ import styled from 'styled-components'
 import CurrencyRow from './CurrencyRow'
 
 const Wraper = styled.div`
-  width: 400px;
-  height: 250px;
+  min-width: 400px;
+  min-height: 250px;
   text-align: center;
   border-radius: 20px;
   background-color: #ecf0f1;
-  box-shadow: 25px 15px 3px #bdc3c7;
+  box-shadow: 20px 15px 5px #bdc3c7;
+  position: relative;
+  padding: 10px;
+`
+
+const Header = styled.header`
+  width: 100%;
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+`
+
+const Content = styled.div`
+  width: 100%;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 const Text = styled.span`
-  font-size: 3rem;
   color: #34495e;
-`
-
-const Header = styled(Text)`
+  font-size: 3rem;
   font-weight: 700;
-  padding: 10px 0;
+  line-height: 3rem;
 `
 
 const API_URL = 'https://api.exchangeratesapi.io/latest'
@@ -64,6 +82,14 @@ function App() {
     }
   }, [currencyFrom, currencyTo])
 
+  const handleCurrencyFrom = event => {
+    setCurrencyFrom(event.target.value)
+  }
+
+  const handleCurrencyTo = event => {
+    setCurrencyTo(event.target.value)
+  }
+
   const handleAmountFrom = event => {
     setAmount(event.target.value)
     setAmountState(true)
@@ -77,29 +103,25 @@ function App() {
   return (
     <Wraper>
       <Header>
-        Convert
+        <Text>Convert</Text>
       </Header>
-      <CurrencyRow 
-        currencyOption={currencyOption}
-        selectedCurrency={currencyFrom}
-        changeCurrency={
-          event => setCurrencyFrom(event.target.value)
-        }
-        amount={amountFrom}
-        changeAmount={handleAmountFrom}
-      />
-      <Text>
-        =
-      </Text>
-      <CurrencyRow
-        currencyOption={currencyOption}
-        selectedCurrency={currencyTo}
-        changeCurrency={
-          event => setCurrencyTo(event.target.value)
-        }
-        amount={amountTo}
-        changeAmount={handleAmountTo}
-      />
+      <Content>
+        <CurrencyRow 
+          currencyOption={currencyOption}
+          selectedCurrency={currencyFrom}
+          changeCurrency={handleCurrencyFrom}
+          changeAmount={handleAmountFrom}
+          amount={amountFrom}
+        />
+        <Text>=</Text>
+        <CurrencyRow
+          currencyOption={currencyOption}
+          selectedCurrency={currencyTo}
+          changeCurrency={handleCurrencyTo}
+          changeAmount={handleAmountTo}
+          amount={amountTo}
+        />
+      </Content>
     </Wraper>
   )
 }
